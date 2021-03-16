@@ -17,7 +17,7 @@ export const setHeadersSectionIsOpen = isOpen => {
 };
 
 export const getHeadersSectionIsOpen = () => {
-  const defaultIsOpen = true;
+  const defaultIsOpen = false;
 
   const isOpen = window.localStorage.getItem(
     'ApiExplorer:HeadersSectionIsOpen'

@@ -1,15 +1,15 @@
-FROM node:8.9-alpine
+FROM node:12-alpine
 
 # Create app directory
 WORKDIR /app
 
 # Install app dependencies
-RUN npm config set unsafe-perm true
+# RUN npm config set unsafe-perm true
 RUN npm -g install serve
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
 COPY package*.json ./
 
-RUN npm install
+RUN npm ci
 
 # Bundle app source
 COPY . /app

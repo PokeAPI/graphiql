@@ -171,7 +171,7 @@ class ApiRequest extends Component {
 
       return (
         <CollapsibleToggle
-          title={'GraphQL Endpoint'}
+          title={'PokeAPI GraphQL Endpoint'}
           isOpen={endpointSectionIsOpen}
           toggleHandler={toggleHandler}
           useDefaultTitleStyle

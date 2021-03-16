@@ -6,12 +6,12 @@ class ApiRequestDetails extends Component {
     const styles = require('../ApiExplorer.scss');
     return (
       <div className={styles.apiRequestWrapper + ' ' + styles.apiContentPadd}>
-        <div className={styles.apiRequestContent}>{this.props.description}</div>
+        <div className={styles.apiRequestContent}>PokeAPI GraphiQL interface</div>
         <div className={styles.built}>
-          Built with <i className="fa fa-heart" /> by <a href={'http://hasura.io/'} target={'_blank'}>Hasura</a>
+          A rate limit of 50 calls per day is enforced
         </div>
         <div className={styles.apiHasura}>
-          <a href="https://github.com/hasura/graphql-engine/tree/master/community/tools/graphiql-online" target={'_blank'}>
+          <a href="https://github.com/PokeAPI/pokeapi" target={'_blank'}>
             <i className="fa fa-github" />
           </a>
         </div>

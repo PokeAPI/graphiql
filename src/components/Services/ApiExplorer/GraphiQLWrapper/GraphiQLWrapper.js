@@ -51,7 +51,7 @@ class GraphiQLWrapper extends Component {
       return (
         <GraphiQL
           fetcher={graphQLFetcher}
-          voyagerUrl={voyagerUrl}
+          // voyagerUrl={voyagerUrl}
           {...graphiqlProps}
         />
       );

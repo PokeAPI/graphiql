@@ -1,8 +1,22 @@
 const defaultHeader = [
   {
-    key: 'content-type',
+    key: 'Content-Type',
     value: 'application/json',
     isActive: true,
+    isNewHeader: false,
+    isDisabled: true,
+  },
+  {
+    key: 'X-Method-Used',
+    value: 'graphiql',
+    isActive: true,
+    isNewHeader: false,
+    isDisabled: true,
+  },
+  {
+    key: 'X-Token',
+    value: '',
+    isActive: false,
     isNewHeader: false,
     isDisabled: true,
   },

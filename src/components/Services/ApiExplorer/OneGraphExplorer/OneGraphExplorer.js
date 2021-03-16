@@ -24,7 +24,28 @@ class OneGraphExplorer extends React.Component {
     explorerWidth: getExplorerWidth(),
     explorerClientX: null,
     schema: null,
-    query: undefined,
+    query: `
+# Use the left-side Explorer to form GQL queries
+
+query samplePokeAPIquery {
+
+  # Gets all the pokemon belonging to generation 3
+  gen3_species: pokemon_v2_pokemonspecies(where: {pokemon_v2_generation: {name: {_eq: "generation-iii"}}}, order_by: {id: asc}) {
+    name
+    id
+  }
+  
+  # You can run multiple queries at the same time
+  # Counts how many pokemon where release for each generation
+  generations: pokemon_v2_generation {
+    name
+    pokemon_species: pokemon_v2_pokemonspecies_aggregate {
+      aggregate {
+        count
+      }
+    }
+  }
+}`,
     isResizing: false,
     loading: false,
     previousIntrospectionHeaders: [],
@@ -52,7 +73,7 @@ class OneGraphExplorer extends React.Component {
     const queryFile = urlParams ? urlParams.query_file : null;
 
     if (queryFile) {
-      getRemoteQueries(queryFile, remoteQuery =>
+      getRemoteQueries(queryFile, (remoteQuery) =>
         this.setState({ query: remoteQuery })
       );
     } else if (numberOfTables === 0) {
@@ -66,8 +87,8 @@ class OneGraphExplorer extends React.Component {
       const localStorageQuery = getGraphiQLQueryFromLocalStorage();
 
       if (localStorageQuery) {
-        if (localStorageQuery.includes('do not have')) {
-          const FRESH_GRAPHQL_MSG = '# Try out GraphQL queries here\n';
+        if (localStorageQuery.includes("do not have")) {
+          const FRESH_GRAPHQL_MSG = "# Try out GraphQL queries here\n";
 
           this.setState({ query: FRESH_GRAPHQL_MSG });
         } else {
@@ -82,14 +103,14 @@ class OneGraphExplorer extends React.Component {
     const headers = JSON.parse(JSON.stringify(this.props.headers));
     this.setState({ loading: true });
     fetch(endpoint, {
-      method: 'POST',
+      method: "POST",
       headers: getHeadersAsJSON(headers || []),
       body: JSON.stringify({
         query: getIntrospectionQuery(),
       }),
     })
-      .then(response => response.json())
-      .then(result => {
+      .then((response) => response.json())
+      .then((result) => {
         this.setState({
           schema: buildClientSchema(result.data),
           loading: false,
@@ -105,7 +126,7 @@ class OneGraphExplorer extends React.Component {
       });
   }
 
-  onExplorerResize = e => {
+  onExplorerResize = (e) => {
     const { explorerClientX, explorerWidth } = this.state;
 
     if (explorerClientX === null) {
@@ -122,7 +143,7 @@ class OneGraphExplorer extends React.Component {
     }
   };
 
-  editQuery = query => {
+  editQuery = (query) => {
     this.setState({ query });
   };
 
@@ -134,17 +155,17 @@ class OneGraphExplorer extends React.Component {
     this.setState({ explorerOpen: newIsOpen });
   };
 
-  handleExplorerResize = e => {
+  handleExplorerResize = (e) => {
     e.preventDefault();
-    document.addEventListener('mousemove', this.onExplorerResize);
+    document.addEventListener("mousemove", this.onExplorerResize);
     this.setState({
       isResizing: true,
     });
   };
 
-  handleExplorerResizeStop = e => {
+  handleExplorerResizeStop = (e) => {
     e.preventDefault();
-    document.removeEventListener('mousemove', this.onExplorerResize);
+    document.removeEventListener("mousemove", this.onExplorerResize);
     this.setState({
       isResizing: false,
     });
@@ -195,7 +216,7 @@ class OneGraphExplorer extends React.Component {
     return (
       <div
         className={
-          'graphiql-container' + (isResizing ? ' explorerCursorResize' : '')
+          "graphiql-container" + (isResizing ? " explorerCursorResize" : "")
         }
         onMouseUp={this.handleExplorerResizeStop}
       >
