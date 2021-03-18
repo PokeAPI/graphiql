@@ -8,7 +8,7 @@ class ApiRequestDetails extends Component {
       <div className={styles.apiRequestWrapper + ' ' + styles.apiContentPadd}>
         <div className={styles.apiRequestContent}>PokeAPI GraphiQL interface</div>
         <div className={styles.built}>
-          A rate limit of 50 calls per day is enforced
+          A rate limit of 100 calls per hour is enforced
         </div>
         <div className={styles.apiHasura}>
           <a href="https://github.com/PokeAPI/pokeapi" target={'_blank'}>

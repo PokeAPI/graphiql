@@ -186,7 +186,7 @@ class ApiRequest extends Component {
               styles.stickyHeader
             }
           >
-            <div className={'col-xs-11 ' + styles.padd_remove}>
+            <div className={'col-xs-12 ' + styles.padd_remove}>
               <div
                 className={
                   'input-group ' +
@@ -209,11 +209,11 @@ class ApiRequest extends Component {
                 />
               </div>
             </div>
-            <div className={'col-xs-1 ' + styles.padd_remove}>
+            {/* <div className={'col-xs-1 ' + styles.padd_remove}>
               <button onClick={this.changeEndpoint.bind(this)} className={styles.changeEndpoint + ' btn btn-sm btn-small btn-info'}>
                 Change Endpoint
               </button>
-            </div>
+            </div> */}
             <div className={styles.stickySeparator} />
           </div>
         </CollapsibleToggle>

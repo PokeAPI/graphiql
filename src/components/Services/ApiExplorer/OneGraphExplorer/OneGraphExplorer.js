@@ -36,7 +36,7 @@ query samplePokeAPIquery {
   }
   
   # You can run multiple queries at the same time
-  # Counts how many pokemon where release for each generation
+  # Counts how many pokemon were released for each generation
   generations: pokemon_v2_generation {
     name
     pokemon_species: pokemon_v2_pokemonspecies_aggregate {
