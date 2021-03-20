@@ -17,9 +17,8 @@ const routes = store => {
   return (
     <Route path="/" component={App}>
       <Route path="">
-        <IndexRoute component={generatedLoginConnector(connect)} />
+        <IndexRoute component={generatedApiExplorer(connect)} />
       </Route>
-      <Route path="/graphiql" component={generatedApiExplorer(connect)} />
       <Route
         path="voyager-view"
         component={generatedVoyagerConnector(connect)}

@@ -53,7 +53,7 @@ class ApiExplorer extends Component {
             request={displayedApi.request}
             route={route}
             dataHeaders={dataHeaders}
-            numberOfTables={0}
+            numberOfTables={1}
             headerFocus={headerFocus}
             queryParams={this.props.location.query}
             graphqlEndpoint={localStorageUrl}
