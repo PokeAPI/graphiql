@@ -1,0 +1,141 @@
+<!--
+ *  Copyright (c) 2021 GraphQL Contributors
+ *  All rights reserved.
+ *
+ *  This source code is licensed under the license found in the
+ *  LICENSE file in the root directory of this source tree.
+-->
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>GraphiQL</title>
+  <style>
+    body {
+      height: 100%;
+      margin: 0;
+      width: 100%;
+      overflow: hidden;
+      scrollbar-color: #50628399 #0000;
+      scrollbar-width: thin;
+    }
+
+    #graphiql {
+      height: calc(100vh - 32px);
+    }
+
+    #header {
+      height: 32px;
+      display: flex;
+      flex-wrap: wrap;
+      overflow: hidden;
+    }
+
+    #header>div {
+      flex-grow: 1;
+      text-align: center;
+      font-size: 20px;
+      line-height: 40px;
+      background-color: hsl(var(--color-base));
+      font-family: "Fira Code";
+      color: #95a0b5
+    }
+
+    #header>div:first-child {
+      min-width: 350px;
+    }
+
+    #header>div:last-child {
+      min-width: 600px;
+    }
+
+    #header>div>a {
+      color: #feca1b;
+    }
+
+    .graphiql-explorer-root>div {
+      overflow: unset !important;
+      overflow-x: scroll;
+    }
+
+    .CodeMirror-scrollbar-filler {
+      background-color: #0000 !important;
+    }
+  </style>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/graphiql/graphiql.min.js" type="application/javascript"></script>
+  <link rel="stylesheet" href="https://unpkg.com/graphiql/graphiql.min.css" />
+  <script src="https://unpkg.com/@graphiql/plugin-explorer/dist/index.umd.js" crossorigin></script>
+  <link rel="stylesheet" href="https://unpkg.com/@graphiql/plugin-explorer/dist/style.css" />
+</head>
+
+<body>
+  <div id="header" class="graphiql-container">
+    <div>
+      <a href="https://pokeapi.co">PokeAPI</a> GraphiQL interface
+    </div>
+    <div>
+      A rate limit of 200 calls per hour is enforced
+    </div>
+  </div>
+  <div id="graphiql">Loading...</div>
+  <script>
+    const root = ReactDOM.createRoot(document.getElementById('graphiql'));
+    const fetcher = GraphiQL.createFetcher({
+      url: 'https://beta.pokeapi.co/graphql/v1beta',
+      headers: { 'X-Method-Used': 'graphiql-pokeapi-console' },
+    });
+    const explorerPlugin = GraphiQLPluginExplorer.explorerPlugin();
+    root.render(
+      React.createElement(GraphiQL, {
+        fetcher,
+        defaultEditorToolsVisibility: true,
+        plugins: [explorerPlugin],
+        explorerIsOpen: true,
+        visiblePlugin: explorerPlugin,
+        confirmCloseTab: function () { return true },
+        defaultQuery: `
+# Using this tool you can try out GraphQL queries against our API
+#  https://beta.pokeapi.co/graphql/v1beta
+#
+# You can then use these queries in your product
+#
+# Below a query that fetches and sorts all gen-3 pokemon
+#  and then for each generation counts how many pokemon are present
+
+query samplePokeAPIquery {
+  gen3_species: pokemon_v2_pokemonspecies(
+    where: {pokemon_v2_generation: {name: {_eq: "generation-iii"}}}
+    order_by: {id: asc}
+  ) {
+    name
+    id
+  }
+  generations: pokemon_v2_generation {
+    name
+    pokemon_species: pokemon_v2_pokemonspecies_aggregate {
+      aggregate {
+        count
+      }
+    }
+  }
+}
+
+# Find the documentation here
+#  https://pokeapi.co/docs/graphql`
+      },
+        React.createElement(GraphiQL.Logo,
+          {},
+          React.createElement('img', {
+            src: 'https://raw.githubusercontent.com/PokeAPI/media/refs/heads/master/logo/pokeapi_64_min.png',
+            alt: 'pokeapi'
+          }
+          )
+        )
+      ),
+    );
+  </script>
+</body>
+
+</html>
