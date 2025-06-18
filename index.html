@@ -83,7 +83,7 @@
   <script>
     const root = ReactDOM.createRoot(document.getElementById('graphiql'));
     const fetcher = GraphiQL.createFetcher({
-      url: 'https://beta.pokeapi.co/graphql/v1beta',
+      url: 'https://graphql.pokeapi.co/v1beta2',
       headers: { 'X-Method-Used': 'graphiql-pokeapi-console' },
     });
     const explorerPlugin = GraphiQLPluginExplorer.explorerPlugin();
@@ -97,7 +97,7 @@
         confirmCloseTab: function () { return true },
         defaultQuery: `
 # Using this tool you can try out GraphQL queries against our API
-#  https://beta.pokeapi.co/graphql/v1beta
+#  https://graphql.pokeapi.co/v1beta2
 #
 # You can then use these queries in your product
 #
@@ -105,16 +105,16 @@
 #  and then for each generation counts how many pokemon are present
 
 query samplePokeAPIquery {
-  gen3_species: pokemon_v2_pokemonspecies(
-    where: {pokemon_v2_generation: {name: {_eq: "generation-iii"}}}
+  gen3_species: pokemonspecies(
+    where: {generation: {name: {_eq: "generation-iii"}}}
     order_by: {id: asc}
   ) {
     name
     id
   }
-  generations: pokemon_v2_generation {
+  generations: generation {
     name
-    pokemon_species: pokemon_v2_pokemonspecies_aggregate {
+    pokemon_species: pokemonspecies_aggregate {
       aggregate {
         count
       }
