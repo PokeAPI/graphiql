@@ -55,20 +55,20 @@
       background-color: #0000 !important;
     }
   </style>
-  <link rel="stylesheet" href="https://esm.sh/graphiql@5.0.0/dist/style.css"/>
-  <link rel="stylesheet" href="https://esm.sh/@graphiql/plugin-explorer@5.0.0/dist/style.css"/>
+  <link rel="stylesheet" href="https://esm.sh/graphiql@5.4.0/dist/style.css"/>
+  <link rel="stylesheet" href="https://esm.sh/@graphiql/plugin-explorer@5.1.5/dist/style.css"/>
   <script type="importmap">
       {
         "imports": {
-          "react": "https://esm.sh/react@19.1.0",
-          "react/jsx-runtime": "https://esm.sh/react@19.1.0/jsx-runtime",
-          "react-dom": "https://esm.sh/react-dom@19.1.0",
-          "react-dom/client": "https://esm.sh/react-dom@19.1.0/client",
-          "graphiql": "https://esm.sh/graphiql@5.0.0?standalone&external=react,react-dom,@graphiql/react,graphql",
-          "@graphiql/plugin-explorer": "https://esm.sh/@graphiql/plugin-explorer@5.0.0?standalone&external=react,@graphiql/react,graphql",
-          "@graphiql/react": "https://esm.sh/@graphiql/react@0.35.0?standalone&external=react,react-dom,graphql",
-          "@graphiql/toolkit": "https://esm.sh/@graphiql/toolkit@0.11.3?standalone&external=graphql",
-          "graphql": "https://esm.sh/graphql@16.11.0"
+          "react": "https://esm.sh/react@19.3.1",
+          "react/jsx-runtime": "https://esm.sh/react@19.3.1/jsx-runtime",
+          "react-dom": "https://esm.sh/react-dom@19.3.1",
+          "react-dom/client": "https://esm.sh/react-dom@19.3.1/client",
+          "graphiql": "https://esm.sh/graphiql@5.4.0?standalone&external=react,react-dom,@graphiql/react,graphql",
+          "@graphiql/plugin-explorer": "https://esm.sh/@graphiql/plugin-explorer@5.1.5?standalone&external=react,@graphiql/react,graphql",
+          "@graphiql/react": "https://esm.sh/@graphiql/react@0.39.1?standalone&external=react,react-dom,graphql",
+          "@graphiql/toolkit": "https://esm.sh/@graphiql/toolkit@0.12.1?standalone&external=graphql",
+          "graphql": "https://esm.sh/graphql@17.0.2"
         }
       }
   </script>
@@ -90,9 +90,9 @@
     import { GraphiQL, HISTORY_PLUGIN } from 'graphiql';
     import { createGraphiQLFetcher } from '@graphiql/toolkit';
     import { explorerPlugin } from '@graphiql/plugin-explorer';
-    import createJSONWorker from 'https://esm.sh/monaco-editor/esm/vs/language/json/json.worker.js?worker';
-    import createGraphQLWorker from 'https://esm.sh/monaco-graphql/esm/graphql.worker.js?worker';
-    import createEditorWorker from 'https://esm.sh/monaco-editor/esm/vs/editor/editor.worker.js?worker';
+    import createJSONWorker from 'https://esm.sh/monaco-editor@0.57.0/esm/vs/language/json/json.worker.js?worker';
+    import createGraphQLWorker from 'https://esm.sh/monaco-graphql@1.9.0/esm/graphql.worker.js?worker';
+    import createEditorWorker from 'https://esm.sh/monaco-editor@0.57.0/esm/vs/editor/editor.worker.js?worker';
 
     globalThis.MonacoEnvironment = {
         getWorker(_workerId, label) {
